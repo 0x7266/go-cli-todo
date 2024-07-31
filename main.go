@@ -32,7 +32,12 @@ func main() {
 		switch line[0] {
 		case "list":
 			for _, todo := range Todos {
-				fmt.Printf("%v\nID: %v\nStatus: %v\n\n", todo.Description, todo.Id, checkIfDone(todo.IsDone))
+				fmt.Println("----------")
+				statusLine := "[ ] "
+				if todo.IsDone {
+					statusLine = "[X] "
+				}
+				fmt.Printf("%v%v\nid: %v\n", statusLine, todo.Description, todo.Id)
 			}
 			break
 		case "create":
