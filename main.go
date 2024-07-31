@@ -24,20 +24,21 @@ func checkIfDone(status bool) string {
 func main() {
 	Todos := make([]Todo, 0)
 	scanner := bufio.NewScanner(os.Stdin)
-	fmt.Println("What do you want to do next?\nlist\ncreate\nupdate\ndelete")
+	fmt.Println("What do you want to do next?\nlist\ncreate\nupdate\ndelete\n\n")
 
 	for scanner.Scan() {
 		line := strings.Split(scanner.Text(), " ")
 		switch line[0] {
 		case "list":
+			fmt.Println("\n")
 			for i := 0; i < len(Todos); i++ {
 				fmt.Printf("%v\nID: %v\nStatus: %v\n\n", Todos[i].Description, Todos[i].Id, checkIfDone(Todos[i].IsDone))
 			}
 			break
 		case "create":
 			Todos = append(Todos, Todo{
-				Id:          rand.IntN(100),
-				Description: "todooooooo",
+				Id:          len(Todos) + 1,
+				Description: strings.Join(line[1:], " "),
 				IsDone:      false,
 			})
 			break
